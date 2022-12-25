@@ -1,21 +1,28 @@
 
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Jobs;
+//using BenchmarkDotNet.Jobs;
 using IntroductionToBenchmarkDotNet.Models;
 
 namespace IntroductionToBenchmarkDotNet.Benchmarks
 {
-    [SimpleJob(RuntimeMoniker.Net60)]
-    [SimpleJob(RuntimeMoniker.Net48)]
-    [SimpleJob(RuntimeMoniker.Net472)]
+    // Run all benchmarks for each frameworks.
+    // (P.S: You need to update the .csproj to target several frameworks and disable "ImplicitUsings" and "Nullable")
+    //[SimpleJob(RuntimeMoniker.Net60)]
+    //[SimpleJob(RuntimeMoniker.Net48)]
+    //[SimpleJob(RuntimeMoniker.Net472)]
     public class GetByIdBenchmark
     {
         readonly List<Person> people = new();
         readonly int id = 1;
 
+        // Set of values.
+        // Runs a benchmark for each 
+        // combination of parametric values.
         [Params(10, 50, 100)]
         public int NumberOfIterations { get; set; }
 
+        // Executed before all benchmark iterations. 
+        // It will be executed only once.
         [GlobalSetup]
         public void GlobalSetup()
         {
@@ -26,6 +33,15 @@ namespace IntroductionToBenchmarkDotNet.Benchmarks
             }
         }
 
+        // Executed after all benchmark iterations. 
+        // It will be executed only once.
+        [GlobalCleanup]
+        public void GlobalCleanup()
+        {
+            // E.g: Dispose
+        }
+
+        // Target the method that will be executed as a benchmark.
         [Benchmark]
         public Person? Foreach()
         {
@@ -38,10 +54,12 @@ namespace IntroductionToBenchmarkDotNet.Benchmarks
             return null;
         }
 
+        // Target the method that will be executed as a benchmark.
         [Benchmark]
         public Person? FirstOrDefault() 
             => people.FirstOrDefault(x => x.Id == id);
 
+        // Target the method that will be executed as a benchmark.
         [Benchmark]
         public Person? SingleOrDefault() 
             => people.SingleOrDefault(x => x.Id == id);
