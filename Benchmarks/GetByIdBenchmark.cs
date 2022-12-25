@@ -19,14 +19,14 @@ namespace IntroductionToBenchmarkDotNet.Benchmarks
         // Runs a benchmark for each 
         // combination of parametric values.
         [Params(10, 50, 100)]
-        public int NumberOfIterations { get; set; }
+        public int Iterations { get; set; }
 
         // Executed before all benchmark iterations. 
         // It will be executed only once.
         [GlobalSetup]
         public void GlobalSetup()
         {
-            for (int i = 1; i <= NumberOfIterations; i++)
+            for (int i = 1; i <= Iterations; i++)
             {
                 var person = new Person { Id = i, Name = $"Name{i}" };
                 people.Add(person);
