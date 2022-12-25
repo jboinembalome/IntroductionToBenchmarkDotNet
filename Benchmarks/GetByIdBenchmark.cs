@@ -1,15 +1,13 @@
 
 using BenchmarkDotNet.Attributes;
-//using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Jobs;
 using IntroductionToBenchmarkDotNet.Models;
 
 namespace IntroductionToBenchmarkDotNet.Benchmarks
 {
     // Run all benchmarks for each frameworks.
-    // (P.S: You need to update the .csproj to target several frameworks and disable "ImplicitUsings" and "Nullable")
-    //[SimpleJob(RuntimeMoniker.Net60)]
-    //[SimpleJob(RuntimeMoniker.Net48)]
-    //[SimpleJob(RuntimeMoniker.Net472)]
+    [SimpleJob(RuntimeMoniker.Net70)]
+    [SimpleJob(RuntimeMoniker.Net60)]
     public class GetByIdBenchmark
     {
         readonly List<Person> people = new();
