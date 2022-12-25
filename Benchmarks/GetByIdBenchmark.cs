@@ -13,7 +13,7 @@ namespace IntroductionToBenchmarkDotNet.Benchmarks
         readonly List<Person> people = new();
         readonly int id = 1;
 
-        [Params(10)]
+        [Params(10, 50, 100)]
         public int NumberOfIterations { get; set; }
 
         [GlobalSetup]
