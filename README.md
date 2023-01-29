@@ -8,7 +8,7 @@ Source code used in the article [Introduction to BenchmarkDotNet](https://www.bl
 ## Project version
 - .NET 6.0;.NET 7.0
 
-## NuGet Packages includes
+## NuGet Packages include
 - **BenchmarkDotNet**: 0.13.2
 
 ## Give a Star! :star:
