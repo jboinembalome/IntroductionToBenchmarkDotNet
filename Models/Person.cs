@@ -1,8 +1,7 @@
-namespace IntroductionToBenchmarkDotNet.Models 
+namespace IntroductionToBenchmarkDotNet.Models;
+
+public class Person
 {
-    public class Person
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-    }
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
 }
